@@ -1,0 +1,27 @@
+<h1>@<%= @user.username %> Profile </h1>
+
+<% unless current_user == @user %>
+  <% unless current_user.following?(@user) %>
+    <%= form_for(current_user.active_relationships.build) do |f| %>
+      <div><%= hidden_field_tag :followee_id, @user.id %></div>
+      <%= f.submit "Follow" %>
+    <% end %>
+  <% end %>
+
+  <%= link_to 'Unfollow', relationship_path(@user), method: :delete if current_user.following?(@user) %>
+<% end %>
+
+
+<ul>
+  <% @user.tweets.each do |tweet| %>
+    <li>
+      <%= @user.username %>
+      <%= tweet.body %>
+      <small><%= tweet.created_at %></small>
+      <%= link_to 'X', tweet_path(tweet), method: :delete, class: 'btn' %>
+    </li>
+      <% tweet.tags.each do |tag| %>
+        <%= link_to "#{tag.name}", tag_path(tag) %>
+      <% end %>
+  <% end %>
+</ul>

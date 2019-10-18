@@ -1,12 +1,14 @@
 class TweetsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @tweet = Tweet.new
 
-    @tweets = Tweet.all.order('created_at DESC')
+    @tweets = current_user.feed.order('created_at DESC')
   end
 
   def create
-    @tweet = Tweet.new(tweet_params)
+    @tweet = current_user.tweets.new(tweet_params)
     @tweet.save
 
     @tag_array = @tweet.body.scan(/#\w+\b/)

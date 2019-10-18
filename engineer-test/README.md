@@ -1,24 +1,24 @@
-# README
+# Installation
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+**Clone the repository**
+```sh
+$ git clone https://github.com/gladkiy98/engineer-test-twitter-clone.git
+```
 
-Things you may want to cover:
+**Move to the directory**
+```sh
+$ cd engineer-test
+```
 
-* Ruby version
+**Set up the project**
+```sh
+bundle
+rake db:create db:migrate
+```
 
-* System dependencies
+# Using
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+**Run Application**
+```sh
+$ rails s
+```
